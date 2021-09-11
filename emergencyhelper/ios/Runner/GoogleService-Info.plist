@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>476382007912-j5ih3ipco7rs9j12rum2ilr1qgfjigqa.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.476382007912-j5ih3ipco7rs9j12rum2ilr1qgfjigqa</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>476382007912-f6i6960tqhp9ua5bv4tga1ej1soad641.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAj8JgSm2FKL5aQHN98T3j0ZLVdNE_ctn8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>476382007912</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.iothelper.emergencyhelper</string>
+	<key>PROJECT_ID</key>
+	<string>smart-ruler-325012</string>
+	<key>STORAGE_BUCKET</key>
+	<string>smart-ruler-325012.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:476382007912:ios:9e52a7f527ec7094b0a1dd</string>
+</dict>
+</plist>

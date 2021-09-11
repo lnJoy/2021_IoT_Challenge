@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "476382007912",
+    "project_id": "smart-ruler-325012",
+    "storage_bucket": "smart-ruler-325012.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476382007912:android:42a251385675424bb0a1dd",
+        "android_client_info": {
+          "package_name": "com.iothelper.emergencyhelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476382007912-f6i6960tqhp9ua5bv4tga1ej1soad641.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iothelper.emergencyhelper",
+            "certificate_hash": "d27825611c8f72b2a7e3fabc48bef6149cebbaa7"
+          }
+        },
+        {
+          "client_id": "476382007912-rn810ucd4mbh60mfpkfvb6pfeo2tunj0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFvvoJ5GVaBrH3WnHIcRpEDXWiNyq0BWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476382007912-rn810ucd4mbh60mfpkfvb6pfeo2tunj0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
