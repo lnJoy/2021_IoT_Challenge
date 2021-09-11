@@ -1,6 +1,7 @@
 from functools import wraps
 
 import jwt
+
 from flask import request, current_app, Response, g
 from flask_socketio import disconnect
 
