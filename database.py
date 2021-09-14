@@ -1,7 +1,7 @@
 import sqlite3
 from flask import g
 
-DATABASE = 'C:\\Users\\Administrator\\PycharmProjects\\IoS\\db.sql'
+DATABASE = 'C:\\Users\\Administrator\\PycharmProjects\\2021_IoT_Challenge\\db.sql'
 
 
 def select_db(query, args=(), one=False):

@@ -8,7 +8,7 @@ from firebase_admin import credentials, messaging
 from authentication import token_required
 from database import select_db, insert_db
 
-cred = credentials.Certificate("C:\\Users\\Administrator\\PycharmProjects\\IoS\\firebase.json")
+cred = credentials.Certificate("C:\\Users\\Administrator\\PycharmProjects\\2021_IoT_Challenge\\firebase.json")
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins='*')
@@ -26,7 +26,7 @@ def register():
         serial = request.json.get('serial')
         token = request.json.get('token')
 
-        if select_db('SELECT serial FROM user_info WHERE serial=? AND key=?', (serial, key), one=True) is None:
+        if select_db('SELECT serial FROM user_info WHERE serial=? OR key=?', (serial, key), one=True) is None:
             result = insert_db('INSERT INTO user_info (serial, key, firebase) values (?, ?, ?)', (serial, key, token))
             if result:
                 return {'status': 'Success!!'}, 200
@@ -34,7 +34,8 @@ def register():
                 return {'status': 'The value you entered is invalid...'}, 406
         else:
             return {'status': 'Already have'}, 406
-    except:
+    except Exception as e:
+        print(e)
         return Response(status=400)
 
 
@@ -50,6 +51,7 @@ def login():
         else:
             return {'status': 'Login Failed..'}, 406
     except Exception as e:
+        print(e)
         return Response(status=400)
 
 
@@ -92,23 +94,41 @@ def on_status(json):
     print('received my event: ' + str(json))
     get_serial = jwt.decode(request.headers.get('Authorization')[7:], app.config['JWT_SECRET_KEY'], algorithms=['HS256'])['serial']
     _token = select_db('SELECT firebase FROM user_info WHERE serial=?;', (get_serial,), one=True)[0]
+    message = messaging.Message()
     emergency = {'emergency': False}
     if json['status'] is True:
         emergency['emergency'] = True
-    message = messaging.Message(
-        android = messaging.AndroidConfig(
-            priority='normal',
-            notification = messaging.AndroidNotification(
-                title = '낙상 감지!!!!',
-                body = '사용자의 낙상이 감지되었습니다!!',
-                icon = '',
-                color = '#E60505',
-                sound='high'
+        message = messaging.Message(
+            android=messaging.AndroidConfig(
+                priority='high',
+                notification=messaging.AndroidNotification(
+                    title='낙상 감지!!!!',
+                    body='사용자의 낙상이 감지되었습니다!!',
+                    icon='',
+                    color='#E60505',
+                    sound='normal'
+                ),
             ),
-        ),
-        token = _token
-    )
-    result = messaging.send(message)
+            data={'detect': 'true'},
+            token=_token
+        )
+        messaging.send(message)
+
+    if json['cnt'] == 1:
+        emergency['emergency'] = False
+        message = messaging.Message(
+            data={'detect': 'false'},
+            token=_token
+        )
+        messaging.send(message)
+        # message = messaging.Message(
+        #     android=messaging.AndroidConfig(priority='high'),
+        #     data={'detect': False},
+        #     token=_token
+        # )
+    print(json['cnt'])
+
+
     socketio.emit('my_response', emergency, callback=messageReceived)
 
 
@@ -125,4 +145,4 @@ app.config['JWT_SECRET_KEY'] = 'ABCDEFG'
 app.config['SECRET_KEY'] = os.urandom(24)
 
 if __name__ == "__main__":
-    socketio.run(app, host='61.73.71.185', port=80, debug=True)
+    socketio.run(app, host='0.0.0.0', port=80, debug=True)
